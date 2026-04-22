@@ -78,9 +78,15 @@
                     <label class="form-label">Precio (₡)</label>
                     <div class="d-flex gap-2">
                         <input type="number" name="precio_min" class="form-control input-busqueda"
-                               placeholder="Mín" value="{{ request('precio_min') }}">
+                            placeholder="Mín"
+                            min="1"
+                            value="{{ request('precio_min') }}"
+                            oninput="document.querySelector('[name=precio_max]').min = this.value || 1">
+
                         <input type="number" name="precio_max" class="form-control input-busqueda"
-                               placeholder="Máx" value="{{ request('precio_max') }}">
+                            placeholder="Máx"
+                            min="{{ request('precio_min') ?: 1 }}"
+                            value="{{ request('precio_max') }}">
                     </div>
                 </div>
 
